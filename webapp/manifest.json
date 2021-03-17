@@ -1,0 +1,186 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "router_demo",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZEMPPRO_SRV": {
+				"uri": "/sap/opu/odata/sap/ZEMPPRO_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZEMPPRO_SRV/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "router_demo.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.collaboration": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "routersap_router_demo.i18n.i18n"
+				}
+			},
+			"zemployee": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZEMPPRO_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "router_demo.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition": "slide",
+				"bypassed": {
+					"target": "notFound"
+				},
+				"async": true
+			},
+			"routes": [{
+				"name": "",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["home"]
+			}, {
+				"name": "employeelist",
+				"pattern": "employeelist",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["employeelist"]
+			}, {
+				"name": "employee",
+				"pattern": "employee{id}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["employee"]
+			}, {
+				"name": "oData",
+				"pattern": "oData",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["odataemplist"]
+			}, {
+				"name": "list",
+				"pattern": "list",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["list"]
+			}],
+			"targets": {
+				"home": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Home",
+					"viewId": "home",
+					"viewLevel": 1
+				},
+				"notFound": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "NotFound",
+					"viewId": "NotFound",
+					"viewLevel": 2
+				},
+				"employeelist": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "EmployeeList",
+					"viewId": "2",
+					"viewPath": "router_demo.view.employee"
+				},
+				"employee": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Employee",
+					"viewPath": "router_demo.view.employee",
+					"viewLevel": 3
+				},
+				"odataemplist": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "EmpList",
+					"viewLevel": 2,
+					"viewPath": "router_demo.view.oData"
+				},
+				"list": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "List",
+					"viewLevel": 2,
+					"viewId": "List"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,38 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="router_demo.controller.employee.EmployeeList">
+	<App>
+		<pages>
+			<Page title="Title" showNavButton="true" navButtonPress=".onNavBack">
+				<content>
+					<Table noDataText="没有数显示" id="__table0" items="{/items}">
+						<items>
+							<ColumnListItem id="__item0" type="Navigation" press="onItemClick">
+								<cells>
+									<Text text="{id}" id="__text0"/>
+									<Text text="{name}" id="__text1"/>
+									<Text text="{city}" id="__text2"/></cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="__column0">
+								<header>
+									<Label text="ID" id="__label0"/>
+								</header>
+							</Column>
+							<Column id="__column1">
+								<header>
+									<Label text="姓名" id="__label1"/>
+								</header>
+							</Column>
+							<Column id="__column2">
+								<header>
+									<Label text="城市" id="__label2"/>
+								</header>
+							</Column>
+						</columns>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

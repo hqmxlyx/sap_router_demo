@@ -1,0 +1,71 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="router_demo.controller.oData.EmpList">
+	<App>
+		<pages>
+			<Page title="Title" showNavButton="true" navButtonPress=".onNavBack">
+				<content>
+					<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" ariaLabelledBy="__xmlview0--__label1" editable="true" id="__form1">
+						<sap.ui.layout.form:formContainers>
+							<sap.ui.layout.form:FormContainer title="用户ID" id="__container3">
+								<sap.ui.layout.form:formElements>
+									<sap.ui.layout.form:FormElement label="ID" id="__element3">
+										<sap.ui.layout.form:fields>
+											<Input suggestionItems="{/EmployeeCollection}" suggestionItemSelected="suggestionItemSelected" valueHelpRequest="handleValueHelp"
+												placeholder="Enter User ID" width="100%" id="search_input_id" showValueHelp="true">
+												<core:ListItem key="{Empid}" text="{Empname}" additionalText="{Empid}"/>
+											</Input>
+											<Button text="Search" width="auto" id="__button3" icon="sap-icon://search" press="onRead"/>
+										</sap.ui.layout.form:fields>
+									</sap.ui.layout.form:FormElement>
+								</sap.ui.layout.form:formElements>
+							</sap.ui.layout.form:FormContainer>
+						</sap.ui.layout.form:formContainers>
+						<sap.ui.layout.form:layout>
+							<sap.ui.layout.form:ResponsiveGridLayout id="__layout1"/>
+						</sap.ui.layout.form:layout>
+					</sap.ui.layout.form:Form>
+					<Table noDataText="没有数据" id="table_id" items="{/EmployeeCollection}">
+						<items>
+							<ColumnListItem id="__item1" type="Navigation" press="onItemPress">
+								<cells>
+									<Text text="{Empid}" id="Empid_input"/>
+									<Text text="{Empname}" id="Empname_input"/>
+									<Text text="{Empaddr}" id="Empaddr_input"/></cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="__column0">
+								<header>
+									<Label text="工号" id="__label0"/>
+								</header>
+							</Column>
+							<Column id="__column1">
+								<header>
+									<Label text="姓名" id="__label1"/>
+								</header>
+							</Column>
+							<Column id="__column2">
+								<header>
+									<Label text="地址" id="__label2"/>
+								</header>
+							</Column>
+						</columns>
+					</Table>
+				</content>
+				<footer>
+					<Toolbar class="sapContrast sapContrastPlus" width="100%" id="__toolbar2">
+						<content>
+							<ToolbarSpacer id="__spacer0"/>
+							<Button text="新增" width="100px" id="__button0" icon="sap-icon://create" press="onCreate"/>
+							<ToolbarSeparator id="__separator0"/>
+							<Button text="修改" width="100px" id="__button1" icon="sap-icon://edit" press="onEdit"/>
+							<ToolbarSeparator id="__separator1"/>
+							<Button text="删除" width="100px" id="__button2" icon="sap-icon://delete" press="onDelete"/>
+							<ToolbarSpacer id="__spacer1"/>
+						</content>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

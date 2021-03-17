@@ -1,0 +1,64 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="router_demo.controller.List">
+	<App>
+		<pages>
+			<Page title="Title" showNavButton="true" navButtonPress=".onNavBack">
+				<content>
+					<Table noDataText="Drop column list items here and columns in the area above" id="__table0" items="{/items}">
+						<items>
+							<ColumnListItem id="__item0">
+								<cells>
+									<Text text="{id}" id="__text3"/>
+									<Text text="{name}" id="__text4"/>
+									<Text text="{addr}" id="__text5"/></cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="__column0">
+								<header>
+									<Label text="主键" id="__label0"/>
+								</header>
+							</Column>
+							<Column id="__column1">
+								<header>
+									<Label text="姓名" id="__label1"/>
+								</header>
+							</Column>
+							<Column id="__column2">
+								<header>
+									<Label text="地址" id="__label2"/>
+								</header>
+							</Column>
+						</columns>
+					</Table><Table noDataText="Drop column list items here and columns in the area above" id="__table1" items="{model2>/items}">
+						<items>
+							<ColumnListItem id="__item2">
+								<cells>
+									<Text text="{model2>id}" id="__text9"/>
+									<Text text="{model2>name}" id="__text10"/>
+									<Text text="{model2>city}" id="__text11"/></cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="__column3">
+								<header>
+									<Label text="id" id="__label3"/>
+								</header>
+							</Column>
+							<Column id="__column4">
+								<header>
+									<Label text="name" id="__label4"/>
+								</header>
+							</Column>
+							<Column id="__column5">
+								<header>
+									<Label text="city" id="__label5"/>
+								</header>
+							</Column>
+						</columns>
+					</Table>
+					<Button text="提示按键实现国际化" width="auto" id="__button0" press="onPress"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

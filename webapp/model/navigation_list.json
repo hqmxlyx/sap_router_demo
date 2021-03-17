@@ -1,0 +1,23 @@
+{
+	"items": [{
+		"id": "1",
+		"name": "人员信息",
+		"desc": "人员信息调转",
+		"target": "employeelist"
+	}, {
+		"id": "2",
+		"name": "NotFound Page",
+		"desc": "页面找不到调转",
+		"target": "notFound"
+	}, {
+		"id": "3",
+		"name": "Odata CRUD",
+		"desc": "Odata 链接SAP执行增删改查操作",
+		"target": "oData"
+	}, {
+		"id": "4",
+		"name": "List",
+		"desc": "一个页面多个Model情况",
+		"target": "list"
+	}]
+}

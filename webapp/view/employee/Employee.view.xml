@@ -1,0 +1,15 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="router_demo.controller.employee.Employee">
+	<App>
+		<pages>
+			<Page title="Title" showNavButton="true" navButtonPress=".onNavBack" id="empdetial">
+				<content>
+					<Label text="{id}" width="100%" id="__label1"/>
+					<Label text="{name}" width="100%" id="__label2"/>
+					<Label text="{city}" width="100%" id="__label3"/>
+					<Button text="Button" width="100px" id="__button0"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,2 @@
+1.sapui5 version 1.84.2
+2.右键项目->Project Settings->SAPUI5->版本也要设置为1.84.2

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        title="{i18n>inputusriddialog_header_title}"
+        class="sapUiPopupWithPadding"
+        items="{/EmployeeCollection}"
+        search="_handleValueHelpSearch"
+        confirm="_handleValueHelpClose"
+        cancel="_handleValueHelpClose">
+        <StandardListItem
+            title="用户id:{Empid}用户名称:{Empname}"
+            description="描述：{Empid}" />
+    </SelectDialog>
+</core:FragmentDefinition>
