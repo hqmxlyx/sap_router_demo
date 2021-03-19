@@ -1,6 +1,8 @@
 sap.ui.define([
-	"router_demo/controller/BaseController"
-], function(BaseController) {
+	"router_demo/controller/BaseController",
+	"sap/m/ViewSettingsDialog",
+	"sap/m/ViewSettingsItem"
+], function(BaseController, ViewSettingsDialog, ViewSettingsItem) {
 	"use strict";
 	var aFilters;
 	var oModel, sCurrentPath, sCurrentUsr;
@@ -11,18 +13,69 @@ sap.ui.define([
 			oModel = this.getOwnerComponent().getModel("zemployee");
 			oModel.setUseBatch(false);
 			this.getView().setModel(oModel);
+			//初始一个值用户判断前两次搜索的数据是否是同一个
+			this.isFilter = null;
+			this._table = this.byId("table_id");
+			this.initViewSettingsDialog();
+		},
+		initViewSettingsDialog: function() {
+			this._oVSD = new ViewSettingsDialog("vsd", {
+				confirm: function(oEvent) {
+					var oSortItem = oEvent.getParameter("sortItem");
+					var fieldname = oSortItem.getKey();
+					var issort = oEvent.getParameter("sortDescending");
+					var oSorter = new sap.ui.model.Sorter(fieldname, issort);
+					var oBinding = this._table.getBinding("items");
+					oBinding.sort(oSorter);
+				}.bind(this),
+				cancel: function(oEvent) {}.bind(this)
+			});
+
+			// init sorting (with simple sorters as custom data for all fields)
+			this._oVSD.addSortItem(new ViewSettingsItem({
+				key: "Empid",
+				text: "用户ID",
+				selected: true // by default the MockData is sorted by EmployeeID
+			}));
+
+			this._oVSD.addSortItem(new ViewSettingsItem({
+				key: "Empname",
+				text: "姓名",
+				selected: false
+			}));
+		},
+		onOpenDialog: function() {
+			this._oVSD.open();
+		},
+		onSort: function(oEvent) {
+			//返回按键文本
+			oEvent.getSource().getText();
+			//第二个参数是是否通过descending降序排序
+			var oSorter = new sap.ui.model.Sorter("Empid", false);
+			var oSorter2 = new sap.ui.model.Sorter("Empname", true);
+			var oBinding = this._table.getBinding("items");
+			//oBinding.sort(oSorter);
+			oBinding.sort([oSorter, oSorter2]);
 		},
 		onRead: function() {
 			var sInputValue = this.getView().byId("search_input_id").getValue();
+			//如果前后两次搜索是同一个数据，就直接返回
+			if (this.isFilter === sInputValue) {
+				return;
+			}
+			this.isFilter = sInputValue;
+
 			if (sInputValue === "") {
 				aFilters = [new sap.ui.model.Filter("Empid",
 					//sap.ui.model.FilterOperator.Contains,
 					sap.ui.model.FilterOperator.eq,
 					"*")];
 			} else {
-				aFilters = [new sap.ui.model.Filter("Empid",
-					sap.ui.model.FilterOperator.EQ,
-					sInputValue)];
+				aFilters = [
+					new sap.ui.model.Filter("Empid", sap.ui.model.FilterOperator.Contains, sInputValue)
+				];
+				//添加 Empname 字段作为筛选条件
+				aFilters.push(new sap.ui.model.Filter("Empname", sap.ui.model.FilterOperator.Contains, sInputValue));
 			}
 
 			// get data using filter
@@ -142,7 +195,7 @@ sap.ui.define([
 					},
 					error: function(oError) {
 						window.console.log("Error", oError);
-						sap.m.MessageToast.show("数据更新失败"+ oError.message + oError.statusCode  + oError.responseText);
+						sap.m.MessageToast.show("数据更新失败" + oError.message + oError.statusCode + oError.responseText);
 					}
 				});
 				// close dialog

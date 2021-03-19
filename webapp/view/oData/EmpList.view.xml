@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="router_demo.controller.oData.EmpList">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="router_demo.controller.oData.EmpList">
 	<App>
 		<pages>
 			<Page title="Title" showNavButton="true" navButtonPress=".onNavBack">
@@ -10,11 +9,12 @@
 								<sap.ui.layout.form:formElements>
 									<sap.ui.layout.form:FormElement label="ID" id="__element3">
 										<sap.ui.layout.form:fields>
-											<Input suggestionItems="{/EmployeeCollection}" suggestionItemSelected="suggestionItemSelected" valueHelpRequest="handleValueHelp"
-												placeholder="Enter User ID" width="100%" id="search_input_id" showValueHelp="true">
+											<Input suggestionItems="{/EmployeeCollection}" suggestionItemSelected="suggestionItemSelected" valueHelpRequest="handleValueHelp" placeholder="Enter User ID" width="100%" id="search_input_id" showValueHelp="true">
 												<core:ListItem key="{Empid}" text="{Empname}" additionalText="{Empid}"/>
 											</Input>
 											<Button text="Search" width="auto" id="__button3" icon="sap-icon://search" press="onRead"/>
+											<Button text="Sort" width="auto" id="__button5" icon="sap-icon://sort" press="onSort"/>
+											<Button text="Sort Dialog" width="100px" id="__button4" icon="sap-icon://discussion" press="onOpenDialog"/>
 										</sap.ui.layout.form:fields>
 									</sap.ui.layout.form:FormElement>
 								</sap.ui.layout.form:formElements>
